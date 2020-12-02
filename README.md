@@ -1,6 +1,7 @@
 # my_blockchain
 
 ## Introduction ##
+    
     my_blockchain is a program that creates and manages a blockchain. It lets the user add Nodes, that are
 resposible for storing Blocks. Following the blockchain logic, each node of the chain must have all blocks
 that were added. In case there is a block that is not present in at least one of the nodes, the blockchain is 
@@ -8,6 +9,7 @@ out of sync, and must be syncronized - have the block added to all the nodes.
     The program can create a new blockchain, but also can load up an existing blockchain.
 
 ## Usage ##
+    
     When my_blockchain is run, it checks if there is a blockchain to be loaded, otherwise, it starts a new one.
 After loading up, it prompts the user, giving some information about the blockchain in the following manner:
 
@@ -21,6 +23,7 @@ Inside the [ ]:
     the second one, indicates how many nodes are in the blockchain;
 
 ### Commands ###
+    
     Commands supported by my_blockchain
 
 #### add ####
@@ -101,21 +104,9 @@ struct Node
     Node *next;
 }
 
-$>my_blockchain
-[-3]> ls -ls
-1: 12, 23
-2: 12, 23
-3: 12
-
-
 nid_1 -> nid_2 -> nid_3 -> NULL;
-  |        |        |
-  v        v        v
- bid_12  bid_12    bid_12
-  |        |        |
-  v        v        v
- bid_23  bid_23.   NULL
-  |        |        
-  v        v
- NULL     NULL           
+
 ```
+
+
+
