@@ -1,10 +1,9 @@
-#include "../includes/my_blockchain.h"
+#include "includes/my_blockchain.h"
 
 int main()
 {
     char buf[255];
     int b_read = 0;
-    char *command = NULL;
     int index = 0;
 
     while (1)
@@ -15,10 +14,8 @@ int main()
         buf[b_read] = '\0';
         while (buf[index] >= 65 && buf[index] <= 122)
             index++;
-        
-        command = (char*)malloc(sizeof(char) * index -1);
-        command = my_strncpy(command, buf, index);
-        if (!(my_strcmp(command, "quit")))
+
+        if (!(my_strncmp(buf, "quit", 4)))
             break;
         /*
         else if (!(my_strcmp(command, "ls")))
@@ -26,11 +23,12 @@ int main()
         else if (!(my_strcmp(command, "sync")))
             sync_nodes();
         */
-        else if (!(my_strcmp(command, "add")))
-            check_and_add(&buf[my_strlen(command)]);
-        else if (!(my_strcmp(command, "rm")))
-            check_and_rm(&buf[my_strlen(command)]);
+        else if (!(my_strncmp(buf, "add", 3)))
+            check_and_add(&buf[3]);
+        else if (!(my_strncmp(buf, "rm", 2)))
+            check_and_rm(&buf[2]);
     }
-
+    
+    
     return 0;
 }

@@ -2,15 +2,15 @@
 
 char *my_strncpy(char *dst, char *src, size_t len)
 {
-    int i = -1;
+    size_t i = 0;
 
-    while (src[++i] != '\0' && len > 0)
+    while (src[i] != '\0' && len > i)
     {
         dst[i] = src[i];
-        len--;
+        i++;
     }
 
-    while (len-- > 0)
+    while (i < len)
     {
         dst[i] = '\0';
         i++;
