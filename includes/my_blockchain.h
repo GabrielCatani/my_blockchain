@@ -6,6 +6,7 @@
 #include <sys/uio.h>
 #include <unistd.h>
 #include <fcntl.h>
+#define READLINE_READ_SIZE 100
 #define error1 "1: no more resources available on the computer"
 #define error2 "2: this node already exists"
 #define error3 "3: this block already exists"
@@ -21,6 +22,7 @@ typedef struct block
 typedef struct node
 {
     int nid;
+    int qty_blocks;
     block *blocks;
     struct node *next;
 } node;
@@ -35,4 +37,11 @@ int my_atoi(char *s);
 int index_next_word(char *str);
 void check_and_add(char *input);
 void check_and_rm(char *input);
+char *my_strjoin(char *s1, char *s2);
+char *my_strdup(char *str);
+char *my_strsub(char *str, int start, int len);
+char *my_strchr(char *str, char c);
+void my_strclr(char **str);
+char *my_readline(int fd);
+node *load_ledger(int fd);
 #endif
