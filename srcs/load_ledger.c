@@ -3,19 +3,10 @@
 node *new_node(char *line)
 {
     node *element;
-    int len = 0;
+    
     element = (node *)malloc(sizeof(node));
     element->nid = my_atoi(line);
-    element->blocks = (block *)malloc(sizeof(block));
-    while (*line != ':')
-        line++;
-    line++;
-    while (line[len] != ',')
-        len++;
-    element->blocks->bid = (char *)malloc(sizeof(char) * len + 1);
-    my_strncpy(element->blocks->bid, line, len);
-    element->blocks->bid[len] = '\0';
-    element->blocks->next = NULL;
+    element->blocks = NULL;
     element->next = NULL;
 
     return element;
@@ -23,16 +14,20 @@ node *new_node(char *line)
 
 void append_node(node **head, char *data)
 {
-    node *ref;
-    
-    ref = *head;
-    if (ref)
+    node *current = *head;
+
+    if (!*head)
     {
-        while (ref)
-            ref = ref->next;
+        *head = new_node(data);
+    }
+    else
+    {
+        current = *head;
+        while (current->next)
+            current = current->next;
+        current->next = new_node(data);
     }
 
-    ref = new_node(data);
 }
 
 node *load_ledger(int fd)
@@ -43,10 +38,15 @@ node *load_ledger(int fd)
     while ((line = my_readline(fd)) != NULL)
     {
         append_node(&start, line);
-        printf("%p\n", start);
         
         free(line);
         line = NULL;
+    }
+
+    while (start)
+    {
+        printf("%d\n", start->nid);
+        start = start->next;
     }
 
     return NULL;
