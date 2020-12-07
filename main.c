@@ -6,17 +6,13 @@ int main()
     int b_read = 0;
     int index = 0;
     int fd = 0;
-    //node *start = NULL;
+    node *start = NULL;
 
     if ((fd = open("test/ledger_test", O_RDONLY)))
     {
-        load_ledger(fd);
-        //blockchain_status(start);
+        start = load_ledger(fd);
+        blockchain_status(start);
         close(fd);
-    }
-    else
-    {
-        write (1, "[s0]> ", 6);
     }
 
 
@@ -28,8 +24,6 @@ int main()
         buf[b_read] = '\0';
         while (buf[index] >= 65 && buf[index] <= 122)
             index++;
-        
-        write(1, "[s0]> ", 6);
 
         if (!(my_strncmp(buf, "quit", 4)))
             break;

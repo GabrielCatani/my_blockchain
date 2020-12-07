@@ -78,6 +78,7 @@ node *load_ledger(int fd)
         
         line = my_strchr(line, ':');
         len = 0;
+        n_node->qty_blocks = 0;
         while (*line != '\0')
         {
             if (is_blank(*line++))
@@ -91,16 +92,16 @@ node *load_ledger(int fd)
             bid[len] = '\0';
 
             n_block = new_block(bid);
+            n_node->qty_blocks++;
             append_block(&n_node->blocks, n_block);
             free(bid);
             bid = NULL;
-    
-            
             line += len;
 
         }
         append_node(&start, n_node);
     }
+    /*
     while (start)
     {
         printf("%d: ", start->nid);
@@ -112,5 +113,6 @@ node *load_ledger(int fd)
         printf("\n");
         start = start->next;
     }
-    return NULL;
+    */
+    return start;
 }

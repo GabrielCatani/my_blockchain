@@ -45,4 +45,5 @@ void my_strclr(char **str);
 char *my_readline(int fd);
 node *load_ledger(int fd);
 int is_blank(char c);
+void blockchain_status(node *head);
 #endif
