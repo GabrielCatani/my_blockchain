@@ -6,7 +6,7 @@ OBJECTS= helpers/index_next_word.o helpers/my_atoi.o helpers/my_strcmp.o helpers
 		helpers/my_strncmp.o helpers/my_strncpy.o helpers/not_blank_len.o main.o srcs/check_and_add.o \
 		srcs/check_and_rm.o helpers/my_strjoin.o helpers/my_strdup.o helpers/my_strsub.o helpers/my_strchr.o \
 		helpers/my_strclr.o srcs/my_readline.o srcs/load_ledger.o helpers/is_blank.o srcs/blockchain_status.o \
-		srcs/sort_blockchain.o srcs/append_block.o
+		srcs/sort_blockchain.o srcs/append_block.o helpers/my_putnbr.o srcs/print_prompt.o
 
 all: $(TARGET)
 

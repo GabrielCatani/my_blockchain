@@ -48,4 +48,6 @@ int is_blank(char c);
 void blockchain_status(node *head);
 void  sort_blockchain(node **head);
 void append_block(block **head, block *n_block);
+void  my_putnbr(int nbr);
+void  print_prompt(int sync, int nbr_nodes);
 #endif

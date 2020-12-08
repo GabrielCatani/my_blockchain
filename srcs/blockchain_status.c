@@ -26,42 +26,59 @@ int check_block_qty(node *head)
 
 int check_block_sync(node *start)
 {
-    block *b_ref = NULL;
-    node *n_ptr = NULL;
-    int counter = 0;
-    int block_index = 0;
+    int nbr_blocks = 0;
+    int count = 0;
+    block *base_ptr = NULL;
+    node *ptr_node = NULL;
+    block *compare_ptr = NULL;
 
-    if (start->next == NULL)
-        return 0;
-
-    b_ref = start->blocks;
-    n_ptr = start->next;
-    while (b_ref)
+    base_ptr = start->blocks;
+    ptr_node = start->next;
+    compare_ptr = ptr_node->blocks;
+    while (base_ptr)
     {
-        counter = 0;
-        while (counter < block_index)
+        while (ptr_node)
         {
-            n_ptr->blocks = n_ptr->blocks->next;
-            counter++;
+            count = 0;
+            compare_ptr = ptr_node->blocks;
+            while (count < nbr_blocks)
+            {
+                compare_ptr = compare_ptr->next;
+                count++;
+            }
+            
+            if (my_strcmp(base_ptr->bid, compare_ptr->bid) != 0)
+                return 0;
+            
+            ptr_node = ptr_node->next;
         }
-        printf("%s - %s\n", b_ref->bid, n_ptr->blocks->bid);
-        if (my_strcmp(b_ref->bid, n_ptr->blocks->bid) != 0)
-            return 0;
-        b_ref = b_ref->next;
-        block_index++;
+        base_ptr = base_ptr->next;
+        nbr_blocks++;
+        ptr_node = start->next;
     }
+
     return 1;
 }
 
 void blockchain_status(node *head)
 {
-    int sync = 0;
-    //int nbr_nodes = 0;
-
-    sync = check_block_qty(head);
-    printf("%d\n", sync);
-    sync = check_block_sync(head);
-    printf("%d\n", sync);
-
-
+    int nbr_nodes = 0;
+    node *ptr = head;
+    
+    while (ptr)
+    {
+        nbr_nodes++;
+        ptr = ptr->next;
+    }
+    
+    if (check_block_qty(head))
+    {
+        if (check_block_sync(head))
+        {
+            print_prompt(1, nbr_nodes);
+            return;
+        }
+    }
+    
+    print_prompt(0, nbr_nodes);
 }
