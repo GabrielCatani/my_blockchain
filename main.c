@@ -11,6 +11,7 @@ int main()
     if ((fd = open("test/ledger_test", O_RDONLY)))
     {
         start = load_ledger(fd);
+        sort_blockchain(&start);
         blockchain_status(start);
         close(fd);
     }

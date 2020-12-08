@@ -46,4 +46,6 @@ char *my_readline(int fd);
 node *load_ledger(int fd);
 int is_blank(char c);
 void blockchain_status(node *head);
+void  sort_blockchain(node **head);
+void append_block(block **head, block *n_block);
 #endif
