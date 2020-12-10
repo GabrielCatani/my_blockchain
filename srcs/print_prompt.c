@@ -8,5 +8,5 @@ void  print_prompt(int sync, int nbr_nodes)
         write(1, "[-", 2);
     
     my_putnbr(nbr_nodes);
-    write(1, "] >", 3);
+    write(1, "]> ", 3);
 }

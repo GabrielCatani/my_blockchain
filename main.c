@@ -12,14 +12,12 @@ int main()
     {
         start = load_ledger(fd);
         sort_blockchain(&start);
-        blockchain_status(start);
-        close(fd);
     }
 
 
     while (1)
     {
-        //blockchain_status();
+        blockchain_status(start);
         index = 0;
         b_read = read(0, buf, 255);
         buf[b_read] = '\0';
@@ -28,14 +26,15 @@ int main()
 
         if (!(my_strncmp(buf, "quit", 4)))
             break;
+        
+        else if (!(my_strncmp(buf, "ls", 2)))
+            check_and_list(&buf[2], &start);
         /*
-        else if (!(my_strcmp(command, "ls")))
-            check_and_list(flag_option);
         else if (!(my_strcmp(command, "sync")))
             sync_nodes();
         */
         else if (!(my_strncmp(buf, "add", 3)))
-            check_and_add(&buf[3]);
+            check_and_add(&buf[3], &start);
         else if (!(my_strncmp(buf, "rm", 2)))
             check_and_rm(&buf[2]);
     }

@@ -1,50 +1,5 @@
 #include "../includes/my_blockchain.h"
 
-
-node *new_node(char *line)
-{
-    node *element;
-    
-    element = (node *)malloc(sizeof(node));
-    element->nid = my_atoi(line);
-    element->qty_blocks = 0;
-    element->blocks = NULL;
-    element->next = NULL;
-
-    return element;
-}
-
-block *new_block(char *bid)
-{
-    block *element;
-
-    element = (block *)malloc(sizeof(block));
-    element->bid = (char *)malloc(sizeof(char) * my_strlen(bid) + 1);
-    my_strncpy(element->bid, bid, my_strlen(bid));
-    element->bid[my_strlen(bid)] = '\0';
-
-    element->next = NULL;
-    return element;
-}
-
-void append_node(node **head, node *n_node)
-{
-    node *current = *head;
-
-    if (!*head)
-    {
-        *head = n_node;
-    }
-    else
-    {
-        current = *head;
-        while (current->next)
-            current = current->next;
-        current->next = n_node;
-    }
-
-}
-
 node *load_ledger(int fd)
 {
     char *line = NULL;
@@ -56,7 +11,7 @@ node *load_ledger(int fd)
     
     while ((line = my_readline(fd)) != NULL)
     {
-        n_node = new_node(line);
+        n_node = new_node(my_atoi(line));
         
         line = my_strchr(line, ':');
         len = 0;

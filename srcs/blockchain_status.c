@@ -65,6 +65,12 @@ void blockchain_status(node *head)
     int nbr_nodes = 0;
     node *ptr = head;
     
+    if (!head)
+    {
+        print_prompt(0, nbr_nodes);
+        return;
+    }
+    
     while (ptr)
     {
         nbr_nodes++;
@@ -79,6 +85,6 @@ void blockchain_status(node *head)
             return;
         }
     }
-    
+
     print_prompt(0, nbr_nodes);
 }

@@ -1,11 +1,12 @@
 #include "../includes/my_blockchain.h"
 
-void check_and_add(char *input)
+void check_and_add(char *input, node **head)
 {
 	int nid = 0;
 	char *bid = NULL;
 	int index = 0;
 	int len = 0;
+    node *n_ptr = NULL;
 
 	index = index_next_word(input);
 	len = not_blank_len(&input[index]);
@@ -18,7 +19,10 @@ void check_and_add(char *input)
 		len = not_blank_len(&input[index]);
 
 		nid = atoi(&input[index]);
-		printf("nid: %d", nid);
+        if (check_nodes(*head, nid))
+            printf("%s\n", error2);
+        else
+            append_node(head, new_node(nid));
 	}
 	else if (!(my_strncmp(&input[index], "block", len - 1)))
 	{
@@ -34,13 +38,25 @@ void check_and_add(char *input)
 		index += index_next_word(&input[index]);
 		len = not_blank_len(&input[index]);
 
-		if (input[index] == '*')
-			printf("add in all nid\n");
-		else
+        if (check_blocks(*head, bid))
         {
-			nid = atoi(&input[index]);
-			printf("bid: %s\nnid: %d\n", bid, nid);
+            printf("%s\n", error3);
         }
+        else
+        {
+            if (input[index] == '*')
+			    printf("add in all nodes\n");
+		    else
+            {
+			    nid = atoi(&input[index]);
+                if ((n_ptr = check_nodes(*head, nid)))
+			        append_block(&n_ptr->blocks, new_block(bid));
+                else
+                    printf("%s\n", error4);
+            }
+
+        }
+		
         free(bid);
         bid = NULL;
 	}
