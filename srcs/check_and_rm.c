@@ -1,6 +1,6 @@
 #include "../includes/my_blockchain.h"
 
-void check_and_rm(char *input)
+void check_and_rm(char *input, node **head)
 {
 	int nid = 0;
 	char *bid = NULL;
@@ -22,7 +22,7 @@ void check_and_rm(char *input)
 		else
         {
 			nid = atoi(&input[index]);
-			printf("nid: %d\n", nid);
+			remove_node(head, nid);
         }
 	}
 	else if (!(my_strncmp(&input[index], "block", len - 1)))

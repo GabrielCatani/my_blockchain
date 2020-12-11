@@ -14,7 +14,6 @@ int main()
         sort_blockchain(&start);
     }
 
-
     while (1)
     {
         blockchain_status(start);
@@ -26,17 +25,14 @@ int main()
 
         if (!(my_strncmp(buf, "quit", 4)))
             break;
-        
         else if (!(my_strncmp(buf, "ls", 2)))
             check_and_list(&buf[2], &start);
-        /*
-        else if (!(my_strcmp(command, "sync")))
-            sync_nodes();
-        */
+        //else if (!(my_strncmp(&buf[4], "sync", 4)))
+            //sync_nodes();
         else if (!(my_strncmp(buf, "add", 3)))
             check_and_add(&buf[3], &start);
         else if (!(my_strncmp(buf, "rm", 2)))
-            check_and_rm(&buf[2]);
+            check_and_rm(&buf[2], &start);
     }
     
     

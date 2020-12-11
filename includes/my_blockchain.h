@@ -36,7 +36,7 @@ int my_strcmp(char *s1, char *s2);
 int my_atoi(char *s);
 int index_next_word(char *str);
 void check_and_add(char *input, node **head);
-void check_and_rm(char *input);
+void check_and_rm(char *input, node **head);
 char *my_strjoin(char *s1, char *s2);
 char *my_strdup(char *str);
 char *my_strsub(char *str, int start, int len);
@@ -56,4 +56,6 @@ node *new_node(int nid);
 block *new_block(char *bid);
 node  *check_nodes(node *head, int nid);
 int  check_blocks(node *head, char *bid);
+void  remove_all_blocks(node **n_ptr);
+void  remove_node(node **head, int nid);
 #endif

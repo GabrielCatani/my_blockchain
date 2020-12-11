@@ -45,7 +45,14 @@ void check_and_add(char *input, node **head)
         else
         {
             if (input[index] == '*')
-			    printf("add in all nodes\n");
+			{
+                n_ptr = *head;
+                while (n_ptr)
+                {
+                    append_block(&n_ptr->blocks, new_block(bid));
+                    n_ptr = n_ptr->next;
+                }
+            }
 		    else
             {
 			    nid = atoi(&input[index]);

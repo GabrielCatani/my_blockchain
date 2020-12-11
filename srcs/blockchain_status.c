@@ -46,7 +46,6 @@ int check_block_sync(node *start)
                 compare_ptr = compare_ptr->next;
                 count++;
             }
-            
             if (my_strcmp(base_ptr->bid, compare_ptr->bid) != 0)
                 return 0;
             
