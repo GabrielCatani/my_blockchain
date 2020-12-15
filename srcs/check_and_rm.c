@@ -18,12 +18,9 @@ void check_and_rm(char *input, node **head)
 		len = not_blank_len(&input[index]);
 
 		if (input[index] == '*')
-			printf("remove all nid\n");
+			remove_all_nodes(head);
 		else
-        {
-			nid = atoi(&input[index]);
-			remove_node(head, nid);
-        }
+			remove_node(head, my_atoi(&input[index]));
 	}
 	else if (!(my_strncmp(&input[index], "block", len - 1)))
 	{

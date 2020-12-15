@@ -6,7 +6,6 @@ void check_and_add(char *input, node **head)
 	char *bid = NULL;
 	int index = 0;
 	int len = 0;
-    node *n_ptr = NULL;
 
 	index = index_next_word(input);
 	len = not_blank_len(&input[index]);
@@ -33,39 +32,29 @@ void check_and_add(char *input, node **head)
 		bid = (char*)malloc(sizeof(char) * len + 1);
 		my_strncpy(bid, &input[index], len);
         bid[len] = '\0';
-
+        
 		index += not_blank_len(&input[index]);
 		index += index_next_word(&input[index]);
 		len = not_blank_len(&input[index]);
+        nid = my_atoi(&input[index]);
+
 
         if (check_blocks(*head, bid))
         {
             printf("%s\n", error3);
         }
+        else if (!check_nodes(*head, nid) && my_strcmp(&input[index], "*") == 0)
+        {
+            printf("%s\n", error4);
+        }
+        else if (my_strcmp(&input[index], "*") == 0)
+        {
+            append_block_in_all_nodes(head, new_block(bid));
+        }
         else
         {
-            if (input[index] == '*')
-			{
-                n_ptr = *head;
-                while (n_ptr)
-                {
-                    append_block(&n_ptr->blocks, new_block(bid));
-                    n_ptr = n_ptr->next;
-                }
-            }
-		    else
-            {
-			    nid = atoi(&input[index]);
-                if ((n_ptr = check_nodes(*head, nid)))
-			        append_block(&n_ptr->blocks, new_block(bid));
-                else
-                    printf("%s\n", error4);
-            }
-
+            append_block_in_node(head, new_block(bid), nid);
         }
-		
-        free(bid);
-        bid = NULL;
 	}
 
 	fflush(stdout);

@@ -31,10 +31,13 @@ int check_block_sync(node *start)
     block *base_ptr = NULL;
     node *ptr_node = NULL;
     block *compare_ptr = NULL;
+    
 
     base_ptr = start->blocks;
     ptr_node = start->next;
-    compare_ptr = ptr_node->blocks;
+    if (ptr_node)
+        compare_ptr = ptr_node->blocks;
+    
     while (base_ptr)
     {
         while (ptr_node)
@@ -46,8 +49,11 @@ int check_block_sync(node *start)
                 compare_ptr = compare_ptr->next;
                 count++;
             }
-            if (my_strcmp(base_ptr->bid, compare_ptr->bid) != 0)
-                return 0;
+            if (base_ptr->bid != NULL || compare_ptr->bid != NULL)
+            {
+                if (my_strcmp(base_ptr->bid, compare_ptr->bid) != 0)
+                    return 0;
+            }
             
             ptr_node = ptr_node->next;
         }
@@ -55,7 +61,6 @@ int check_block_sync(node *start)
         nbr_blocks++;
         ptr_node = start->next;
     }
-
     return 1;
 }
 

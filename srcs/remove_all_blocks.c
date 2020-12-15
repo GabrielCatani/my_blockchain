@@ -18,5 +18,4 @@ void  remove_all_blocks(node **n_ptr)
         free(tmp);
         tmp = NULL;
     }
-    (*n_ptr)->blocks = NULL;
 }

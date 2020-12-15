@@ -38,18 +38,5 @@ node *load_ledger(int fd)
         }
         append_node(&start, n_node);
     }
-    /*
-    while (start)
-    {
-        printf("%d: ", start->nid);
-        while (start->blocks)
-        {
-            printf("%s, ", start->blocks->bid);
-            start->blocks = start->blocks->next;
-        }
-        printf("\n");
-        start = start->next;
-    }
-    */
     return start;
 }

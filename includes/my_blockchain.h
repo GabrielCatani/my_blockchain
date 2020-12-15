@@ -58,4 +58,7 @@ node  *check_nodes(node *head, int nid);
 int  check_blocks(node *head, char *bid);
 void  remove_all_blocks(node **n_ptr);
 void  remove_node(node **head, int nid);
+void  remove_all_nodes(node **n_ptr);
+void  append_block_in_all_nodes(node **head, block *n_block);
+void  append_block_in_node(node **head, block *n_block, int nid);
 #endif

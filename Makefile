@@ -8,7 +8,7 @@ OBJECTS= helpers/index_next_word.o helpers/my_atoi.o helpers/my_strcmp.o helpers
 		helpers/my_strclr.o srcs/my_readline.o srcs/load_ledger.o helpers/is_blank.o srcs/blockchain_status.o \
 		srcs/sort_blockchain.o srcs/append_block.o helpers/my_putnbr.o srcs/print_prompt.o srcs/check_and_list.o \
 		srcs/new_node.o srcs/new_block.o srcs/append_node.o srcs/check_nodes.o srcs/check_blocks.o srcs/remove_node.o \
-		srcs/remove_all_blocks.o
+		srcs/remove_all_blocks.o srcs/remove_all_nodes.o srcs/append_block_in_all_nodes.o srcs/append_block_in_node.o
 
 all: $(TARGET)
 
