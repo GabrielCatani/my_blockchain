@@ -15,5 +15,4 @@ void append_block(block **head, block *n_block)
             current = current->next;
         current->next = n_block;
     }
-
 }

@@ -16,6 +16,7 @@ int main()
 
     while (1)
     {
+        sort_blockchain(&start);
         blockchain_status(start);
         index = 0;
         b_read = read(0, buf, 255);

@@ -43,7 +43,7 @@ void check_and_add(char *input, node **head)
         {
             printf("%s\n", error3);
         }
-        else if (!check_nodes(*head, nid) && my_strcmp(&input[index], "*") == 0)
+        else if (!(check_nodes(*head, nid)) && my_strncmp(&input[index], "*", 1) != 0)
         {
             printf("%s\n", error4);
         }

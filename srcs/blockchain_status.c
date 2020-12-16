@@ -26,41 +26,45 @@ int check_block_qty(node *head)
 
 int check_block_sync(node *start)
 {
-    int nbr_blocks = 0;
+    block *ref_ptr = NULL;
+    node *comp_node_ptr = NULL;
+    block *comp_block_ptr = NULL;
+    int block_position = 0;
     int count = 0;
-    block *base_ptr = NULL;
-    node *ptr_node = NULL;
-    block *compare_ptr = NULL;
-    
 
-    base_ptr = start->blocks;
-    ptr_node = start->next;
-    if (ptr_node)
-        compare_ptr = ptr_node->blocks;
-    
-    while (base_ptr)
+    if (start)
     {
-        while (ptr_node)
+        ref_ptr = start->blocks;
+        if (start->next)
+            comp_node_ptr = start->next;
+        else
+            return 1;
+    }
+    else
+        return 1;
+
+    while (ref_ptr)
+    {
+        count = 0;
+        comp_node_ptr = start->next;
+        while (comp_node_ptr)
         {
-            count = 0;
-            compare_ptr = ptr_node->blocks;
-            while (count < nbr_blocks)
+            comp_block_ptr = comp_node_ptr->blocks;
+            while (count < block_position)
             {
-                compare_ptr = compare_ptr->next;
+                comp_block_ptr = comp_block_ptr->next;
                 count++;
             }
-            if (base_ptr->bid != NULL || compare_ptr->bid != NULL)
+            if (my_strcmp(ref_ptr->bid, comp_block_ptr->bid) != 0)
             {
-                if (my_strcmp(base_ptr->bid, compare_ptr->bid) != 0)
-                    return 0;
+                return 0;
             }
-            
-            ptr_node = ptr_node->next;
+            comp_node_ptr = comp_node_ptr->next;
         }
-        base_ptr = base_ptr->next;
-        nbr_blocks++;
-        ptr_node = start->next;
+        block_position++;
+        ref_ptr = ref_ptr->next;
     }
+
     return 1;
 }
 
