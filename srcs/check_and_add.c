@@ -47,7 +47,7 @@ void check_and_add(char *input, node **head)
         {
             printf("%s\n", error4);
         }
-        else if (my_strcmp(&input[index], "*") == 0)
+        else if (my_strncmp(&input[index], "*", 1) == 0)
         {
             append_block_in_all_nodes(head, new_block(bid));
         }
