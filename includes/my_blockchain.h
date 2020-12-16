@@ -27,6 +27,7 @@ typedef struct node
     struct node *next;
 } node;
 
+
 int not_blank_len(char *word);
 char *my_strncpy(char *dst, char *src, size_t len);
 int my_strncmp(char *s1, char *s2, size_t len);
@@ -62,4 +63,5 @@ void  remove_all_nodes(node **n_ptr);
 void  append_block_in_all_nodes(node **head, block *n_block);
 void  append_block_in_node(node **head, block *n_block, int nid);
 void  remove_block(node **head, char *bid);
+block *track_blocks(node *head);
 #endif
