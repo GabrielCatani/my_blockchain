@@ -2,7 +2,6 @@
 
 void check_and_rm(char *input, node **head)
 {
-	int nid = 0;
 	char *bid = NULL;
 	int index = 0;
 	int len = 0;
@@ -32,7 +31,7 @@ void check_and_rm(char *input, node **head)
 		bid = my_strncpy(bid, &input[index], len);
         bid[len] = '\0';
 
-		printf("bid: %s\nnid: %d\n", bid, nid);
+        remove_block(head, bid);
         free(bid);
         bid = NULL;
 	}
