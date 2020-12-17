@@ -85,6 +85,7 @@ void blockchain_status(node *head)
         ptr = ptr->next;
     }
     
+
     if (check_block_qty(head))
     {
         if (check_block_sync(head))

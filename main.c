@@ -7,6 +7,7 @@ int main()
     int index = 0;
     int fd = 0;
     node *start = NULL;
+    block *b_tracker = NULL;
 
     if ((fd = open("test/ledger_test", O_RDONLY)))
     {
@@ -16,7 +17,7 @@ int main()
 
     while (1)
     {
-        //b_tracker = track_blocks(start);
+        b_tracker = track_blocks(start);
         sort_blockchain(&start);
         blockchain_status(start);
         index = 0;
@@ -29,8 +30,8 @@ int main()
             break;
         else if (!(my_strncmp(buf, "ls", 2)))
             check_and_list(&buf[2], &start);
-        //else if (!(my_strncmp(&buf[4], "sync", 4)))
-            //sync_nodes();
+        else if (!(my_strncmp(buf, "sync", 4)))
+            sync_nodes(&start, b_tracker);
         else if (!(my_strncmp(buf, "add", 3)))
             check_and_add(&buf[3], &start);
         else if (!(my_strncmp(buf, "rm", 2)))

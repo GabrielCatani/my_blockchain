@@ -30,7 +30,7 @@ block *track_blocks(node *head)
         {
             if (!block_tracked(tracker, b_ptr->bid))
             {
-                append_block(&tracker, b_ptr);
+                append_block(&tracker, new_block(b_ptr->bid));
             }
             b_ptr = b_ptr->next;
         }

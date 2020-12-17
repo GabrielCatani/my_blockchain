@@ -9,7 +9,7 @@ OBJECTS= helpers/index_next_word.o helpers/my_atoi.o helpers/my_strcmp.o helpers
 		srcs/sort_blockchain.o srcs/append_block.o helpers/my_putnbr.o srcs/print_prompt.o srcs/check_and_list.o \
 		srcs/new_node.o srcs/new_block.o srcs/append_node.o srcs/check_nodes.o srcs/check_blocks.o srcs/remove_node.o \
 		srcs/remove_all_blocks.o srcs/remove_all_nodes.o srcs/append_block_in_all_nodes.o srcs/append_block_in_node.o \
-		srcs/remove_block.o srcs/track_blocks.o
+		srcs/remove_block.o srcs/track_blocks.o srcs/sync_nodes.o
 
 all: $(TARGET)
 
