@@ -27,7 +27,11 @@ int main()
             index++;
 
         if (!(my_strncmp(buf, "quit", 4)))
+        {
+            save_blockchain(start);
+            //clear_chain(&start);
             break;
+        }
         else if (!(my_strncmp(buf, "ls", 2)))
             check_and_list(&buf[2], &start);
         else if (!(my_strncmp(buf, "sync", 4)))

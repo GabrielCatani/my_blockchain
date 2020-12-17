@@ -65,4 +65,7 @@ void  append_block_in_node(node **head, block *n_block, int nid);
 void  remove_block(node **head, char *bid);
 block *track_blocks(node *head);
 void  sync_nodes(node **head, block *tracked);
+int  how_many_digits(int nbr);
+void  save_blockchain(node *head);
+void  my_itoa(int nbr, int fd, int digits);
 #endif
