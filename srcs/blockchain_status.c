@@ -32,6 +32,11 @@ int check_block_sync(node *start)
     int block_position = 0;
     int count = 0;
 
+    if (!start)
+        return 1;
+    else if (!start->next)
+        return 1;
+
     if (start)
     {
         ref_ptr = start->blocks;

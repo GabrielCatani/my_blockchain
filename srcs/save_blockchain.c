@@ -7,8 +7,13 @@ void  save_blockchain(node *head)
     block *b_ptr = NULL;
 
     n_ptr = head;
-    if ((fd = open("test/ledger_test_save", O_WRONLY | O_APPEND | O_CREAT, 0666)))
+    if ((fd = open(LEDGER, O_WRONLY | O_CREAT | O_TRUNC, 0666)))
     {
+        if (!n_ptr)
+        {
+            write(fd, "EMPTY", 5);
+            return;
+        }
         while (n_ptr)
         {
             my_itoa(n_ptr->nid, fd, how_many_digits(n_ptr->nid));

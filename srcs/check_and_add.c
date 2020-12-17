@@ -55,6 +55,8 @@ void check_and_add(char *input, node **head)
         {
             append_block_in_node(head, new_block(bid), nid);
         }
+        free(bid);
+        bid = NULL;
 	}
 
 	fflush(stdout);

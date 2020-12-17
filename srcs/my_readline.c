@@ -65,17 +65,17 @@ int line_len(char **line)
  
 char *my_readline(int fd)
 {
-static char *line[255];
+    static char *line[255];
     int len = 0;
     char *result = NULL; 
 
-if (fd < 0)
-  return NULL;
+    if (fd < 0)
+        return NULL;
     
     read_and_save(fd, line);
 
     if ((len = line_len(line)) < 0)
-    return NULL;
+        return NULL;
 
     result = output_line(line, len);
 

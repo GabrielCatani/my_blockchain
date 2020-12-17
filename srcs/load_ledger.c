@@ -4,16 +4,17 @@ node *load_ledger(int fd)
 {
     char *line = NULL;
     char *bid = NULL;
+    char *full_line = NULL;
     node *start = NULL;
     node *n_node = NULL;
     block *n_block = NULL;
     int len = 0;
     
-    while ((line = my_readline(fd)) != NULL)
+    while ((full_line = my_readline(fd)) != NULL)
     {
-        n_node = new_node(my_atoi(line));
+        n_node = new_node(my_atoi(full_line));
         
-        line = my_strchr(line, ':');
+        line = my_strchr(full_line, ':');
         len = 0;
         n_node->qty_blocks = 0;
         while (*line != '\0')
@@ -34,9 +35,14 @@ node *load_ledger(int fd)
             free(bid);
             bid = NULL;
             line += len;
-
         }
         append_node(&start, n_node);
+        n_node = NULL;
+        line = NULL;
+        free(full_line);
+        full_line = NULL;
     }
+    free(full_line);
+    full_line = NULL;
     return start;
 }

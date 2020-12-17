@@ -10,7 +10,7 @@ OBJECTS= helpers/index_next_word.o helpers/my_atoi.o helpers/my_strcmp.o helpers
 		srcs/new_node.o srcs/new_block.o srcs/append_node.o srcs/check_nodes.o srcs/check_blocks.o srcs/remove_node.o \
 		srcs/remove_all_blocks.o srcs/remove_all_nodes.o srcs/append_block_in_all_nodes.o srcs/append_block_in_node.o \
 		srcs/remove_block.o srcs/track_blocks.o srcs/sync_nodes.o helpers/how_many_digits.o srcs/save_blockchain.o \
-		helpers/my_itoa.o
+		helpers/my_itoa.o srcs/clear_chain.o srcs/clear_tracker.o
 
 all: $(TARGET)
 

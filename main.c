@@ -29,7 +29,8 @@ int main()
         if (!(my_strncmp(buf, "quit", 4)))
         {
             save_blockchain(start);
-            //clear_chain(&start);
+            clear_chain(&start);
+            clear_tracker(&b_tracker);
             break;
         }
         else if (!(my_strncmp(buf, "ls", 2)))
@@ -40,6 +41,9 @@ int main()
             check_and_add(&buf[3], &start);
         else if (!(my_strncmp(buf, "rm", 2)))
             check_and_rm(&buf[2], &start);
+        else
+            printf("%s\n", error6);
+        clear_tracker(&b_tracker);
     }
     
     
