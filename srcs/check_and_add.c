@@ -49,7 +49,7 @@ void check_and_add(char *input, node **head)
         }
         else if (my_strncmp(&input[index], "*", 1) == 0)
         {
-            append_block_in_all_nodes(head, new_block(bid));
+            append_block_in_all_nodes(head, bid);
         }
         else
         {

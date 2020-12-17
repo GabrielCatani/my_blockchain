@@ -7,7 +7,6 @@ int main()
     int index = 0;
     int fd = 0;
     node *start = NULL;
-    block *b_tracker = NULL;
 
     if ((fd = open("test/ledger_test", O_RDONLY)))
     {
@@ -17,12 +16,7 @@ int main()
 
     while (1)
     {
-        b_tracker = track_blocks(start);
-        while (b_tracker)
-        {
-            printf("%s\n", b_tracker->bid);
-            b_tracker = b_tracker->next;
-        }
+        //b_tracker = track_blocks(start);
         sort_blockchain(&start);
         blockchain_status(start);
         index = 0;
