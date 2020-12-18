@@ -2,6 +2,7 @@
 
 ## Introduction ##
     
+
     my_blockchain is a program that creates and manages a blockchain. It lets the user add Nodes, that are
 resposible for storing Blocks. Following the blockchain logic, each node of the chain must have all blocks
 that were added. In case there is a block that is not present in at least one of the nodes, the blockchain is 
@@ -10,8 +11,19 @@ out of sync, and must be syncronized - have the block added to all the nodes.
 
 ## Usage ##
     
+
+    In order to set a different folder or name of the ledger file (resposible for storaging the blockchain 
+    status after quiting the program), a macro has to be changed, under includes folder:
+
+    ```
+    $>cat includes/my_blockchain.h
+    [...]
+    #define LEDGER "./test/ledger"
+    [...]
+    ```
+
     When my_blockchain is run, it checks if there is a blockchain to be loaded, otherwise, it starts a new one.
-After loading up, it prompts the user, giving some information about the blockchain in the following manner:
+After loading up, it prompts the user, giving some information about the blockchain in the following manner.
 
 ```
     $>my_blockchain
@@ -24,6 +36,7 @@ Inside the [ ]:
 
 ### Commands ###
     
+
     Commands supported by my_blockchain
 
 #### add ####
