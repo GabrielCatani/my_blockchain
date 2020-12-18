@@ -12,11 +12,14 @@ node *load_ledger(int fd)
     
     while ((full_line = my_readline(fd)) != NULL)
     {
+        if (my_strncmp(full_line, "EMPTY", 5) == 0)
+            break;
         n_node = new_node(my_atoi(full_line));
         
         line = my_strchr(full_line, ':');
         len = 0;
         n_node->qty_blocks = 0;
+        append_node(&start, n_node);
         while (*line != '\0')
         {
             if (is_blank(*line++))
@@ -36,7 +39,7 @@ node *load_ledger(int fd)
             bid = NULL;
             line += len;
         }
-        append_node(&start, n_node);
+        
         n_node = NULL;
         line = NULL;
         free(full_line);

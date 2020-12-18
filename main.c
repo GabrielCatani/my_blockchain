@@ -9,10 +9,11 @@ int main()
     node *start = NULL;
     block *b_tracker = NULL;
 
-    if ((fd = open("test/ledger_test", O_RDONLY)))
+    if ((fd = open(LEDGER, O_EXCL | O_RDONLY)))
     {
         start = load_ledger(fd);
         sort_blockchain(&start);
+        close(fd);
     }
 
     while (1)
@@ -37,9 +38,9 @@ int main()
             check_and_list(&buf[2], &start);
         else if (!(my_strncmp(buf, "sync", 4)))
             sync_nodes(&start, b_tracker);
-        else if (!(my_strncmp(buf, "add", 3)))
+        else if (!(my_strncmp(buf, "add ", 4)))
             check_and_add(&buf[3], &start);
-        else if (!(my_strncmp(buf, "rm", 2)))
+        else if (!(my_strncmp(buf, "rm ", 3)))
             check_and_rm(&buf[2], &start);
         else
             printf("%s\n", error6);

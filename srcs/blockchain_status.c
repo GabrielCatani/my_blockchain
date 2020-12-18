@@ -45,8 +45,6 @@ int check_block_sync(node *start)
         else
             return 1;
     }
-    else
-        return 1;
 
     while (ref_ptr)
     {
@@ -60,7 +58,7 @@ int check_block_sync(node *start)
                 comp_block_ptr = comp_block_ptr->next;
                 count++;
             }
-            if (my_strcmp(ref_ptr->bid, comp_block_ptr->bid) != 0)
+            if (ref_ptr && comp_block_ptr && my_strcmp(ref_ptr->bid, comp_block_ptr->bid) != 0)
             {
                 return 0;
             }
@@ -80,7 +78,7 @@ void blockchain_status(node *head)
     
     if (!head)
     {
-        print_prompt(0, nbr_nodes);
+        print_prompt(1, nbr_nodes);
         return;
     }
     
@@ -90,8 +88,6 @@ void blockchain_status(node *head)
         ptr = ptr->next;
     }
     
-    //printf("%d %d\n", check_block_qty(head), check_block_sync(head));
-
     if (check_block_qty(head))
     {
         if (check_block_sync(head))

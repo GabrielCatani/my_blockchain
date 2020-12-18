@@ -13,7 +13,7 @@
 #define error4 "4: node doesn't exist"
 #define error5 "5: block doesn't exist"
 #define error6 "6: command not found"
-#define LEDGER "test/ledger_test_save"
+#define LEDGER "./test/ledger"
 typedef struct block
 {
     char *bid;
